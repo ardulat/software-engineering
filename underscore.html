@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Underscore.js</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<style>
+	table {
+	    border-collapse: collapse;
+	}
+
+	table, td, th {
+	    border: 1px solid black;
+	}
+</style>
+
+</head>
+	<body>
+
+		<!-- the document has to have empty table at the beginning -->
+		<table id='tbl'>
+			<tr>
+				<th>Author</th>
+				<th>Text</th>
+				<th>Time</th>
+			</tr>
+		</table>
+
+
+		<script>
+			var messages = [
+				{author: 'Mark Zuckerberg', message: 'I\'m a founder of Facebook.', time: '9:00pm'},
+				{author: 'Steve Jobs', message: 'I\'m a founder of Apple.', time: '9:01pm'},
+				{author: 'Bill Gates', message: 'I\'m a founder of Microsoft.', time: '9:03pm'}
+			],
+		    loadTable = _.template(
+		      '<% _.each(messages, function(msg, messages) { %>' + 
+		      '<tr>' +
+		      	'<td><%= msg.author %></td>' + 
+		        '<td><%= msg.message %></td>' +  
+		       	'<td><%= msg.time %></td>' + 
+		      '</tr>' +
+		      '<% }); %>'
+		    ),
+		    content = loadTable({
+		      messages: messages
+		    });
+
+			document.getElementById('tbl').innerHTML += content;
+		</script>
+	</body>
+</html>
